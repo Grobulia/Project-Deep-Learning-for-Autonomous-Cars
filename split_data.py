@@ -14,14 +14,6 @@ print(trainlen,validlen,testlen)
 x=np.load('data/'+str(time)+str(weather)+'/images_input_merged.npy')
 y=np.load('data/'+str(time)+str(weather)+'/keys_output_merged.npy')
 
-"""x0=np.load('images_input0.npy')
-x1=np.load('images_input1.npy')
-y0=np.load('keys_output0.npy')
-y1=np.load('keys_output1.npy')
-
-x=np.concatenate((x0,x1),axis=0)
-y=np.concatenate((y0,y1),axis=0)"""
-
 print(x.shape)
 print(y.shape)
 

@@ -469,7 +469,6 @@ class CarRacing(gym.Env, EzPickle):
             geom.render()
         self.viewer.onetime_geoms = []
         t.disable()
-        #self.render_indicators(WINDOW_W, WINDOW_H) #.................................................
         if self.weather == "rain":
             self.render_rain(WINDOW_W,WINDOW_H)
         elif self.weather == "snow":
@@ -506,8 +505,6 @@ class CarRacing(gym.Env, EzPickle):
         k=2
         w=int(W/40.0)
         h=int(H/40.0)
-        #colors = [255, 255, 255, 1] * 4
-        #polygons = [W, 0, 0, W, 5 * h, 0, 0, 5 * h, 0, 0, 0, 0]
         polygons=[]
         colors=[]
 
@@ -535,10 +532,6 @@ class CarRacing(gym.Env, EzPickle):
                         0])
 
 
-        #colors = [255, 255, 255, 1] * len(polygons)
-
-        #print(len(polygons)//3)
-
 
 
 
@@ -552,8 +545,6 @@ class CarRacing(gym.Env, EzPickle):
         k = 2
         w = int(W / 40.0)
         h = int(H / 40.0)
-        # colors = [255, 255, 255, 1] * 4
-        # polygons = [W, 0, 0, W, 5 * h, 0, 0, 5 * h, 0, 0, 0, 0]
         polygons = []
         colors = []
 
@@ -605,9 +596,6 @@ class CarRacing(gym.Env, EzPickle):
                                  j + k - 2,
                                  0])
 
-        # colors = [255, 255, 255, 1] * len(polygons)
-
-        # print(len(polygons)//3)
 
         vl = pyglet.graphics.vertex_list(
             len(polygons) // 3, ("v3f", polygons), ("c4f", colors)  # gl.GL_QUADS,
@@ -619,8 +607,6 @@ class CarRacing(gym.Env, EzPickle):
         k = 10
         w = int(W / 40.0) + 30
         h = int(H / 40.0) + 20
-        # colors = [255, 255, 255, 1] * 4
-        # polygons = [W, 0, 0, W, 5 * h, 0, 0, 5 * h, 0, 0, 0, 0]
         lines = []
         colors = []
 

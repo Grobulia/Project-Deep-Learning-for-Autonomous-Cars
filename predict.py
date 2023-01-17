@@ -13,8 +13,6 @@ from skimage.color import rgb2gray
 import os
 from configuration import config
 
-# from pynput.keyboard import Key, Controller
-# from pywinauto.keyboard import SendKeys
 time,weather=config()
 name='timedistributed_cnn_lstm'
 
@@ -55,7 +53,6 @@ def key_release(k, mod):
         a[2] = 0
 
 def start_racing():
-    #keyboard = Controller()
     f=0
     X_images=[]
     Y_keys = []
@@ -92,34 +89,21 @@ def start_racing():
             if(f%10 ==0):
 
                 matplotlib.image.imsave('original_%s_%s_%s.png'%(weather,time,f), img )
-            #print(np.shape(img))
-            #plt.imshow(img)
-            #img_1 = np.reshape(img,(1,96,96,3))
             img = (img - 127.5) / 127.5
             img = resize(img, (96,96,3),
                        anti_aliasing=True)
 
-            #img=rgb2gray(img) #GRAYSCALE conversion
             img=np.expand_dims(img,axis=0)
 
             img_gw = model_weather.predict(img)
-            #print(img_gw)
 
 
 
-            #print(img_gw)
             img_gw=np.array(img_gw)
             img_gw = (img_gw + 1) / 2.0
             print(img_gw.shape)
             img_gw = np.reshape(img_gw,(96,96,3))
-            #print(img_gw)
-            #if(f%10==0):
-              #  scipy.misc.toimage(image_array, cmin=0.0, cmax=...).save('outfile.jpg')
-                #im.save("image"+str(f)+".jpg")
-                #plt.imshow(img_gw)
-            #if(f%10 ==0):
 
-            #   matplotlib.image.imsave('%s_%s_%s.png'%(weather,time,f), img_gw)
             img_gw=img_gw*255
             img_gw=prepare_image(img_gw)
 
@@ -133,7 +117,6 @@ def start_racing():
                  else:
                      y_predict[0][ind]=0
             a=keys_to_action(y_predict)
-            #print(y_predict)
             speed= CarRacing.render_indicators(env,96,96)
             if(speed<10):
                 a=np.array(a)
@@ -157,7 +140,6 @@ def start_racing():
 def prepare_image(env):
     img=cv2.cvtColor(env,cv2.COLOR_RGB2GRAY)
     img=np.array(img)
-    #print(img.shape)
     return img
 
 def keys_from_action(a):

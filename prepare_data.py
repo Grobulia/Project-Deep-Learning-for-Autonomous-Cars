@@ -64,15 +64,14 @@ def start_racing():
         while True:
             s, r, done, info = env.step(a)
             total_reward += r
-            #if steps % 200 == 0 or done:
-                #print("\naction " + str(["{:+0.2f}".format(x) for x in a]))
-                #print("step {} total_reward {:+0.2f}".format(steps, total_reward))
             steps += 1
             isopen = env.render()
+
             #image capture
             img=env.render(mode='rgb_array')
             img=prepare_image(img)
             X_images.append(img)
+
             #keys capture
             frame_keys = keys_from_action(a)
             Y_keys.append(frame_keys)
@@ -82,8 +81,8 @@ def start_racing():
             if done or restart or isopen == False:
                 break
             if len(X_images) == 1000: #was 1000
-                #save images
 
+                #save images
                 filename='data/'+str(time)+str(weather)+'/image_save'+str(f)+'.npy'
                 np.save(filename,X_images)
 
@@ -99,14 +98,10 @@ def start_racing():
                 f += 1
 
     env.close()
-    #X_images=np.array(X_images)
-    #print(X_images.shape)
-
 
 def prepare_image(env):
     img=cv2.cvtColor(env,cv2.COLOR_RGB2GRAY)
     img=np.array(img)
-    #print(img.shape)
     return img
 
 def keys_from_action(a):
